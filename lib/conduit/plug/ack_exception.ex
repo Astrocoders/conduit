@@ -22,7 +22,7 @@ defmodule Conduit.Plug.AckException do
     iex>   message = MyPipeline.run(%Conduit.Message{status: :nack})
     iex>   :ack = message.status
     iex> end)
-    iex> log =~ "[warn]  Ignoring raised exception because exceptions are set to be acked"
+    iex> log =~ "[warning] Ignoring raised exception because exceptions are set to be acked"
     true
 
   """

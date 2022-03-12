@@ -33,6 +33,7 @@ defmodule Conduit.Plug.DeadLetter do
   Publishes messages that were nacked or raised an exception to a
   dead letter destination.
   """
+
   def call(message, next, opts) do
     message = next.(message)
 

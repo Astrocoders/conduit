@@ -16,7 +16,6 @@ defmodule Conduit.Plug.CreatedBy do
       "myapp"
 
   """
-
   def init(opts) do
     _ = Keyword.fetch!(opts, :app)
 
