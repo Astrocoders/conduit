@@ -47,8 +47,8 @@ defmodule Conduit.Broker do
 
       @callback pipelines() :: [Conduit.Pipeline.t()]
       @callback pipeline(message, next, pipeline) :: message | no_return
-      @callback publish(message, route, opts) :: message | no_return
-      @callback publish(message, route) :: message | no_return
+      @callback publish(message, route, opts) :: {:ok, message} | {:error, term}
+      @callback publish(message, route) :: {:ok, message} | {:error, term}
       @callback receives(route, message) :: message | no_return
 
       @doc false
