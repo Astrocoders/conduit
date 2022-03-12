@@ -111,6 +111,8 @@ defmodule Conduit.Plug.Builder do
   end
 
   defp quote_module_plug(plug, next, opts) do
+    plug = Code.ensure_compiled!(plug)
+
     if function_exported?(plug, :init, 1) && function_exported?(plug, :__build__, 2) do
       opts = plug.init(opts)
 
