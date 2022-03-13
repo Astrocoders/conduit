@@ -51,10 +51,6 @@ defmodule Conduit.Plug.Builder do
       defoverridable init: 1, call: 3
 
       @before_compile Conduit.Plug.Builder
-
-      def __mix_recompile__?() do
-        true
-      end
     end
   end
 
