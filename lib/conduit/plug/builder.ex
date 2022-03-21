@@ -108,11 +108,17 @@ defmodule Conduit.Plug.Builder do
 
   defp quote_module_plug(plug, next, opts) do
     plug =
-      if plug == MissingPlug do
-        plug
-      else
-        Code.ensure_compiled!(plug)
-      end
+      if plug == MissingPlug,
+        do: plug,
+        else:
+          (case Code.ensure_compiled(plug) do
+             {:module, plug} ->
+               plug
+
+             {:error, _} ->
+               raise Conduit.UnknownPlugError,
+                     "Module #{inspect(plug)} does not implement init/1 and __build__/2. Make sure to use Conduit.Plug."
+           end)
 
     if function_exported?(plug, :init, 1) && function_exported?(plug, :__build__, 2) do
       opts = plug.init(opts)
